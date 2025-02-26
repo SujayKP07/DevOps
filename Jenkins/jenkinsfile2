@@ -1,5 +1,5 @@
 pipeline{
-    agent any{
+        agent any
         parameters{
             choice(name: "Stage", choices['checkout','Build','Deploy','Test','All'])
         }
@@ -43,5 +43,4 @@ pipeline{
                 echo "Failure"
             }
         }
-    }
 }
