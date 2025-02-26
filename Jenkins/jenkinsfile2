@@ -1,7 +1,7 @@
 pipeline{
         agent any
         parameters{
-            choice(name: 'stage', choices['checkout','Build','Deploy','Test','All'])
+            choice(name:'stage', choices:['checkout', 'Build', 'Deploy', 'Test', 'All'])
         }
         stages{
             stage('checkout'){
@@ -33,7 +33,14 @@ pipeline{
                     echo "Deploy"
                 }
             }
-
+            stage('Test'){
+                when{
+                    expression{params.stage == 'Test' || params.stage == 'All'}
+                }
+                steps{
+                    echo "Test"
+                }
+            }
         }
         post{
             success{
