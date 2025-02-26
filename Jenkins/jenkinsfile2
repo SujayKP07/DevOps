@@ -6,7 +6,7 @@ pipeline{
         stages{
             stage('checkout'){
                 when{
-                    expression( params.stage == 'checkout' || params.stage == 'All')
+                    expression{params.stage == 'checkout' || params.stage == 'All'} 
                 }
                 steps{
                     echo "executing checkout"
@@ -15,7 +15,7 @@ pipeline{
             }
             stage('Build'){
                 when{
-                    expression( params.stage == 'Build' ||params.stage == 'All')
+                    expression{params.stage == 'Build' ||params.stage == 'All'}
                 }
                 steps{
                     script{
@@ -27,7 +27,7 @@ pipeline{
             }
             stage('Deploy'){
                 when{
-                    expression(params.stage == 'Deploy' || params.stage == 'All')
+                    expression{params.stage == 'Deploy' || params.stage == 'All'}
                 }
                 steps{
                     echo "Deploy"
