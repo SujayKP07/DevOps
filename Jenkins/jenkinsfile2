@@ -3,6 +3,10 @@ pipeline{
         parameters{
             choice(name:'stage', choices:['checkout', 'Build', 'Deploy', 'Test', 'All'])
         }
+        environment{
+            AWS_ACCESS = credentials('AWS_ACCESS')
+            AWS_SECRET = credentials('AWS_SECRET_KEY')
+        }
         stages{
             stage('checkout'){
                 when{
@@ -20,6 +24,8 @@ pipeline{
                 steps{
                     script{
                         echo "executing Build script"
+                        echo "${AWS_ACCESS}"
+                        echo "${env.AWS_SECRET}"
                         //echo "groovy script"
                     }
                 }
