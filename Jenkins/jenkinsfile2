@@ -6,6 +6,7 @@ pipeline{
         environment{
             AWS_ACCESS = credentials('AWS_ACCESS')
             AWS_SECRET = credentials('AWS_SECRET_KEY')
+            AWS_REGION = "us-east-1"
         }
         stages{
             stage('checkout'){
@@ -24,8 +25,8 @@ pipeline{
                 steps{
                     script{
                         echo "executing Build script"
-                        echo "${AWS_ACCESS}"
-                        echo "${env.AWS_SECRET}"
+                        echo "${AWS_REGION}"
+                        echo "${env.AWS_REGION}"
                         //echo "groovy script"
                     }
                 }
