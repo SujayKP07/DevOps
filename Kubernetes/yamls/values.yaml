@@ -1,0 +1,5 @@
+jenkins:
+  image:
+    repository: my-jenkins-war-app  # Your local image name
+    tag: latest                     # Change to match your local tag if different
+    pullPolicy: Never               # Prevent Kubernetes from pulling the image

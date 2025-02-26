@@ -1,0 +1,47 @@
+pipeline{
+    agent any{
+        parameters{
+            choice(name: "Stage", choices['checkout','Build','Deploy','Test','All'])
+        }
+        stages{
+            stage('checkout'){
+                when{
+                    expression( params.stage == 'checkout' || params.stage == 'All')
+                }
+                steps{
+                    echo "executing checkout"
+                    //git checkout ib main
+                }
+            }
+            stage('Build'){
+                when{
+                    expression( params.stage == 'Build' ||params.stage == 'All')
+                }
+                steps{
+                    script{
+                        echo "executing Build script"
+                        //echo "groovy script"
+                    }
+                }
+
+            }
+            stage('Deploy'){
+                when{
+                    expression(params.stage == 'Deploy' || params.stage == 'All')
+                }
+                steps{
+                    echo "Deploy"
+                }
+            }
+
+        }
+        post{
+            success{
+                echo "Success"
+            }
+            failure{
+                echo "Failure"
+            }
+        }
+    }
+}
