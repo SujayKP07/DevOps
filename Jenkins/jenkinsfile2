@@ -1,7 +1,7 @@
 pipeline{
         agent any
         parameters{
-            choice(name: "stage", choices['checkout','Build','Deploy','Test','All'])
+            choice(name: 'stage', choices['checkout','Build','Deploy','Test','All'])
         }
         stages{
             stage('checkout'){
